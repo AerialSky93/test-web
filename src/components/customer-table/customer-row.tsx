@@ -1,5 +1,5 @@
 import { TableRow, TableCell } from "@mui/material";
-import { CustomerBodyView } from "../types/CustomerBodyView";
+import { CustomerBodyView } from "../../types/customer-body-view";
 import styled from "styled-components";
 
 // https://react.dev/learn/thinking-in-react

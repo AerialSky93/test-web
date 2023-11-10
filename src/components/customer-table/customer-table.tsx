@@ -1,8 +1,8 @@
 import { Paper, Table, TableContainer } from "@mui/material";
-import CustomerRow from "./CustomerRow";
-import CustomerHeader from "./CustomerHeader";
-import { CustomerBodyView } from "../types/CustomerBodyView";
-import { customerGetData } from "../types/api/service/CustomerService";
+import CustomerRow from "./customer-row";
+import CustomerHeader from "./customer-header";
+import { CustomerBodyView } from "../../types/customer-body-view";
+import { customerGetData } from "../../types/api/service/customer-service";
 import { useEffect, useState } from "react";
 
 function CustomerTable() {
