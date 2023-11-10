@@ -32,7 +32,6 @@ function App2() {
   };
 
   useEffect(() => {
-    console.log("hello2");
     let sumTest = 4 + 3;
     const test = getDataAsync();
   }, []);
