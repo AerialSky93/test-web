@@ -1,6 +1,7 @@
 import { TableRow, TableCell } from "@mui/material";
 import { CustomerBodyView } from "../../types/customer-body-view";
 import styled from "styled-components";
+import { formatDate } from "../../service/format-date";
 
 // https://react.dev/learn/thinking-in-react
 
@@ -25,7 +26,9 @@ function CustomerRow({ customerBodyView }: CustomerBodyProps) {
       <TableCell align="right">{customerBodyView?.firstName}</TableCell>
       <TableCell align="right">{customerBodyView?.feeAmount}</TableCell>
       <TableCell align="right">{customerBodyView?.activeFlag}</TableCell>
-      <TableCell align="right">{customerBodyView?.enrollmentDate}</TableCell>
+      <TableCell align="right">
+        {formatDate(customerBodyView?.enrollmentDate)}
+      </TableCell>
     </TableRow>
   );
 }

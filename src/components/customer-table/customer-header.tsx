@@ -4,8 +4,12 @@ import styled from "styled-components";
 // https://react.dev/learn/thinking-in-react
 
 const StyledTableCell = styled(TableCell)({
-  backgroundColor: "#99D9EA",
-  fontWeight: "800",
+  backgroundColor: "#B3E5FC",
+  fontWeight: "700!important",
+  "& .MuiTableCell-root": {
+    // or "& .MuiTableCell-root" or "& .MuiTableCell-body" ...
+    fontWeight: "900",
+  },
 });
 
 function CustomerHeader() {

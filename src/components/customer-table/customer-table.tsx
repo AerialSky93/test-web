@@ -1,9 +1,10 @@
-import { Paper, Table, TableContainer } from "@mui/material";
+import { Box, Button, Paper, Table, TableContainer } from "@mui/material";
 import CustomerRow from "./customer-row";
 import CustomerHeader from "./customer-header";
 import { CustomerBodyView } from "../../types/customer-body-view";
-import { customerGetData } from "../../types/api/service/customer-service";
+import { customerGetData } from "../../service-api/customer-service";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CustomerTable() {
   const [customerList, setCustomerList] = useState<CustomerBodyView[]>();
@@ -28,15 +29,29 @@ function CustomerTable() {
     getCustomers();
   }, []);
 
+  const navigate = useNavigate();
+
+  const handleLink = () => {
+    navigate("/post");
+  };
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <CustomerHeader />
-        {customerList?.map((row) => (
-          <CustomerRow customerBodyView={row} />
-        ))}
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <CustomerHeader />
+          {customerList?.map((row) => (
+            <CustomerRow customerBodyView={row} />
+          ))}
+        </Table>
+      </TableContainer>
+
+      <Box marginTop={2}>
+        <Button size="small" onClick={handleLink}>
+          Visit Form Data
+        </Button>
+      </Box>
+    </>
   );
 }
 

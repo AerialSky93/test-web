@@ -1,8 +1,8 @@
-import { Box, Button, TextField } from "@mui/material";
-import { CustomerBodyView } from "../../types/customer-body-view";
-import { customerPost } from "../../types/api/service/customer-service";
+import { Box, Button, IconButton, Snackbar, TextField } from "@mui/material";
+import { customerPost } from "../../service-api/customer-service";
 import { ChangeEvent, useEffect, useState } from "react";
-import { CustomerCreateRequest } from "../../types/api/service/dto/customer-create-request";
+import { CustomerCreateRequest } from "../../service-api/dto/customer-create-request";
+import CloseIcon from "@mui/icons-material/Close";
 
 function CustomerForm() {
   const [formData, setFormData] = useState({
@@ -11,6 +11,19 @@ function CustomerForm() {
   });
 
   useEffect(() => {}, []);
+
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,8 +36,34 @@ function CustomerForm() {
       firstName: formData.firstName,
       feeAmount: +formData.feeAmount,
     };
-    customerPost(customerPostRequest);
+
+    const getCustomers = async () => {
+      try {
+        const response = await customerPost(customerPostRequest);
+        if (response.ok) {
+          setOpen(true);
+        }
+      } catch (e) {
+        console.log("error found", e);
+      }
+    };
+
+    getCustomers();
   };
+
+  const action = (
+    <>
+      <Button color="secondary" size="small" onClick={handleClose}></Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </>
+  );
 
   return (
     <Box>
@@ -56,6 +95,13 @@ function CustomerForm() {
           Submit
         </Button>
       </form>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        message="Data Created"
+        action={action}
+      />
     </Box>
   );
 }
