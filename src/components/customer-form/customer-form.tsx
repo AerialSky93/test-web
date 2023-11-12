@@ -1,4 +1,11 @@
-import { Box, Button, IconButton, Snackbar, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  IconButton,
+  Snackbar,
+  TextField,
+} from "@mui/material";
 import { customerPost } from "../../service-api/customer-service";
 import { ChangeEvent, useEffect, useState } from "react";
 import { CustomerCreateRequest } from "../../service-api/dto/customer-create-request";
@@ -11,6 +18,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 function CustomerForm() {
   const [dateValue, setDateValue] = useState<Dayjs | null>(dayjs("2022-04-17"));
+  const [activeCustomer, setActiveCustomer] = useState<boolean>(false);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -44,6 +52,7 @@ function CustomerForm() {
       firstName: formData.firstName,
       feeAmount: +formData.feeAmount,
       enrollmentDate: formData?.enrollmentDate?.toDate(),
+      activeFlag: activeCustomer,
     };
 
     const getCustomers = async () => {
@@ -99,6 +108,13 @@ function CustomerForm() {
             onChange={handleChange}
             required
           />
+        </Box>
+        <Box>
+          <Checkbox
+            value={activeCustomer}
+            onChange={(newValue) => setActiveCustomer(newValue.target.checked)}
+          />
+          Active Customer
         </Box>
         <Box marginTop={1}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
