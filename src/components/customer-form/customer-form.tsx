@@ -3,11 +3,19 @@ import { customerPost } from "../../service-api/customer-service";
 import { ChangeEvent, useEffect, useState } from "react";
 import { CustomerCreateRequest } from "../../service-api/dto/customer-create-request";
 import CloseIcon from "@mui/icons-material/Close";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs, { Dayjs } from "dayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 function CustomerForm() {
+  const [dateValue, setDateValue] = useState<Dayjs | null>(dayjs("2022-04-17"));
+
   const [formData, setFormData] = useState({
     firstName: "",
     feeAmount: "",
+    enrollmentDate: dateValue,
   });
 
   useEffect(() => {}, []);
@@ -35,6 +43,7 @@ function CustomerForm() {
     const customerPostRequest: CustomerCreateRequest = {
       firstName: formData.firstName,
       feeAmount: +formData.feeAmount,
+      enrollmentDate: formData?.enrollmentDate?.toDate(),
     };
 
     const getCustomers = async () => {
@@ -79,7 +88,7 @@ function CustomerForm() {
             required
           />
         </Box>
-        <Box marginBottom={2}>
+        <Box>
           <TextField
             label="Fee Amount"
             variant="outlined"
@@ -91,9 +100,22 @@ function CustomerForm() {
             required
           />
         </Box>
-        <Button type="submit" variant="contained" color="primary">
-          Submit
-        </Button>
+        <Box marginTop={1}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker", "DatePicker"]}>
+              <DatePicker
+                label="Controlled picker"
+                value={dateValue}
+                onChange={(newValue) => setDateValue(newValue)}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+        </Box>
+        <Box marginTop={2}>
+          <Button type="submit" variant="contained" color="primary">
+            Submit
+          </Button>
+        </Box>
       </form>
       <Snackbar
         open={open}
