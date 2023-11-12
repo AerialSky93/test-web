@@ -1,16 +1,8 @@
 import { TableRow, TableCell } from "@mui/material";
 import { CustomerBodyView } from "../../types/customer-body-view";
-import styled from "styled-components";
 import { formatDate } from "../../service/format-date";
 
 // https://react.dev/learn/thinking-in-react
-
-const Basic = styled(TableCell)({
-  backgroundColor: "aliceblue",
-  color: "darkslategray",
-  padding: "2rem",
-  textAlign: "center",
-});
 
 type CustomerBodyProps = {
   customerBodyView: CustomerBodyView;

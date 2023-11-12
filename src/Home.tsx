@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import {
-  Paper,
-  Table,
-  TableRow,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-} from "@mui/material";
 
 function App2() {
   const [data, setData] = useState();
