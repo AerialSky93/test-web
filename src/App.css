@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #ffffff;
-  min-height: 20vh;
+  min-height: 1vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +25,7 @@
 }
 
 .App-body {
-  padding: 50px;
+  padding: 25px 50px 25px 50px;
 }
 
 .App-link {
