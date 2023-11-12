@@ -4,11 +4,12 @@ import styled from "styled-components";
 // https://react.dev/learn/thinking-in-react
 
 const StyledTableCell = styled(TableCell)({
-  backgroundColor: "#B3E5FC",
-  fontWeight: "700!important",
+  backgroundColor: "#4caf50",
+  color: "white!important",
+  fontWeight: "550!important",
   "& .MuiTableCell-root": {
     // or "& .MuiTableCell-root" or "& .MuiTableCell-body" ...
-    fontWeight: "900",
+    fontWeight: "550",
   },
 });
 
