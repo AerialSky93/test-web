@@ -16,10 +16,17 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
+export const getValueSum = () => {
+  return 4;
+};
+
 function CustomerForm() {
   const [dateValue, setDateValue] = useState<Dayjs | null>(dayjs("2022-04-17"));
   const [activeCustomer, setActiveCustomer] = useState<boolean>(false);
 
+  const [firstNameText, setFirstNameText] = useState<string>("");
+  const [firstNameErrorFlag, setFirstNameErrorFlag] = useState<boolean>(false);
+  const [firstNameError, setFirstNameError] = useState<string>("");
   const [formData, setFormData] = useState({
     firstName: "",
     feeAmount: "",
@@ -41,6 +48,18 @@ function CustomerForm() {
     setOpen(false);
   };
 
+  const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const currentFirstNameText = e.target.value;
+    if (currentFirstNameText.length > 5 || currentFirstNameText.length === 0) {
+      setFirstNameErrorFlag(true);
+      setFirstNameError("Data is required and must be less than 5 characters");
+    } else {
+      setFirstNameErrorFlag(false);
+      setFirstNameError("");
+    }
+    setFirstNameText(e.target.value);
+  };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -49,7 +68,7 @@ function CustomerForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const customerPostRequest: CustomerCreateRequest = {
-      firstName: formData.firstName,
+      firstName: firstNameText,
       feeAmount: +formData.feeAmount,
       enrollmentDate: formData?.enrollmentDate?.toDate(),
       activeFlag: activeCustomer,
@@ -88,20 +107,22 @@ function CustomerForm() {
       <form onSubmit={handleSubmit}>
         <Box marginBottom={2}>
           <TextField
-            label="Name"
+            label="Enter first name"
             variant="outlined"
-            fullWidth
+            error={firstNameErrorFlag}
+            helperText={firstNameError}
             name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
+            value={firstNameText}
+            onChange={handleFirstNameChange}
+            style={{ width: 400 }}
             required
+            data-qa="first-name"
           />
         </Box>
         <Box>
           <TextField
             label="Fee Amount"
             variant="outlined"
-            fullWidth
             name="feeAmount"
             type="number"
             value={formData.feeAmount}
