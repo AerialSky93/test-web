@@ -52,10 +52,10 @@ function Header() {
             }}
           >
             <MenuItem onClick={handleClose} component={Link} href="/getall">
-              View All Data
+              View Job Postings
             </MenuItem>
             <MenuItem onClick={handleClose} component={Link} href="/post">
-              Create Data
+              Create Job Posting
             </MenuItem>
             <MenuItem onClick={handleClose}>Update Item</MenuItem>
           </Menu>
