@@ -18,7 +18,7 @@ function JobPostingHeader() {
     <TableHead>
       <TableRow>
         <StyledTableCell>Job Posting Id</StyledTableCell>
-        <StyledTableCell align="right">Job Description</StyledTableCell>
+        <StyledTableCell align="left">Job Description</StyledTableCell>
         <StyledTableCell align="right">Job Requirements</StyledTableCell>
         <StyledTableCell align="right">Poster Last Name</StyledTableCell>
         <StyledTableCell align="right">Posting Date</StyledTableCell>
