@@ -14,6 +14,7 @@ function JobPostingRow({ jobPostingView }: JobPostingBodyProps) {
       key={jobPostingView.jobPostingId}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
+      <TableCell align="left">{jobPostingView?.jobPostingId}</TableCell>
       <TableCell align="left">{jobPostingView?.jobDescription}</TableCell>
       <TableCell align="right">{jobPostingView?.jobRequirements}</TableCell>
       <TableCell align="right">{jobPostingView?.posterLastName}</TableCell>
