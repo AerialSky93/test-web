@@ -38,6 +38,9 @@ function JobPostingTable() {
 
   return (
     <>
+      <Box marginBottom={3} fontWeight={600}>
+        10 Most Recent Job Postings
+      </Box>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <JobPostingHeader />
@@ -46,7 +49,6 @@ function JobPostingTable() {
           ))}
         </Table>
       </TableContainer>
-
       <Box marginTop={2}>
         <Button size="small" onClick={handleLink}>
           Visit Form Data
